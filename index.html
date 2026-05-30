@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>InfotechPB | Class 9 & 10 Tech Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1><i class="fas fa-laptop-code"></i> Infotech<span>PB</span></h1>
+            </div>
+            <div class="search-mobile-wrap">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search notes, questions, topics...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#" data-section="home" class="nav-link active">Home</a></li>
+                    <li class="dropdown" id="classDropdown">
+                        <a href="#" class="dropdown-trigger" id="classTrigger">Class <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" id="classSubmenu">
+                            <li><a href="#" data-section="class9">Class 9 (Web Design + DBMS)</a></li>
+                            <li><a href="#" data-section="class10">Class 10 (Advanced)</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-section="oldquestions" class="nav-link">Old Questions</a></li>
+                    <li><a href="#" data-section="resources" class="nav-link">Study Notes</a></li>
+                    <li><a href="#" data-section="contact" class="nav-link">Contact Us</a></li>
+                    <li><a href="#" data-section="login" class="nav-link">Login</a></li>
+                    <li><a href="#" data-section="signup" class="nav-link">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mobile-search-row" id="mobileSearchRow">
+            <div class="search-bar">
+                <input type="text" id="mobileSearchInput" placeholder="Search...">
+                <button id="mobileSearchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="searchResultsPanel" class="search-results-panel" style="display: none;">
+        <div class="results-header"><span><i class="fas fa-search"></i> Search Results</span><button id="closeSearchResults"><i class="fas fa-times"></i></button></div>
+        <div id="searchResultsContent"></div>
+    </div>
+
+    <main class="main-content">
+        <!-- HOME Section -->
+        <section id="home-section" class="page-section active-section">
+            <div class="hero">
+                <h2>Welcome to Infotech<span>PB</span></h2>
+                <p>Your complete learning platform for Class 9 & 10 – Website Design, Database Management System, Previous Year Questions, and more.</p>
+                <div class="hero-buttons">
+                    <a href="#" data-section="class9" class="btn btn-primary">Explore Class 9 →</a>
+                    <a href="#" data-section="class10" class="btn btn-outline">Class 10 Subjects</a>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card"><i class="fas fa-code"></i><h3>Website Design</h3><p>Master HTML, CSS, JS, responsive design, and modern frameworks.</p></div>
+                <div class="feature-card"><i class="fas fa-database"></i><h3>DBMS</h3><p>Learn SQL, database design, normalization, and real-world data management.</p></div>
+                <div class="feature-card"><i class="fas fa-file-alt"></i><h3>Old Questions</h3><p>Access 5+ years of solved papers for both classes.</p></div>
+            </div>
+        </section>
+
+        <!-- CLASS 9 - expanded with more info -->
+        <section id="class9-section" class="page-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Class 9 - Complete Syllabus</h2>
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>Website Design (Full Course)</h3>
+                    <p><strong>Topics covered:</strong></p>
+                    <ul class="topic-list">
+                        <li>HTML5 semantic elements & forms</li>
+                        <li>CSS3 – Flexbox, Grid, Animations</li>
+                        <li>Responsive Web Design (Media Queries)</li>
+                        <li>JavaScript basics – DOM, events, validation</li>
+                        <li>Introduction to Bootstrap / Tailwind</li>
+                        <li>Hosting a website (GitHub Pages, Netlify)</li>
+                    </ul>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Management System (DBMS)</h3>
+                    <ul class="topic-list">
+                        <li>File system vs DBMS, advantages</li>
+                        <li>ER diagrams, relational model</li>
+                        <li>SQL – DDL, DML, DCL, Joins, Subqueries</li>
+                        <li>Normalization (1NF, 2NF, 3NF)</li>
+                        <li>Transactions and ACID properties</li>
+                        <li>Introduction to MySQL / PostgreSQL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="extra-resources">
+                <p><i class="fas fa-chalkboard-user"></i> <strong>Extra:</strong> Download practical lab manuals, project ideas (e.g., student database, personal portfolio website).</p>
+            </div>
+        </section>
+
+        <!-- CLASS 10 - expanded -->
+        <section id="class10-section" class="page-section">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> Class 10 - Advanced & Board Prep</h2>
+            <div class="subjects-grid">
+                <div class="subject-card"><i class="fas fa-globe"></i><h3>Advanced Web Design</h3><p>JavaScript ES6+, React basics, API fetching, responsive frameworks, deployment strategies.</p></div>
+                <div class="subject-card"><i class="fas fa-server"></i><h3>Advanced DBMS</h3><p>Stored procedures, triggers, indexing, query optimization, NoSQL (MongoDB overview).</p></div>
+                <div class="subject-card"><i class="fas fa-project-diagram"></i><h3>Software Engineering</h3><p>SDLC models, agile methodology, UML diagrams, project documentation.</p></div>
+            </div>
+        </section>
+
+        <!-- OLD QUESTIONS - more questions added -->
+        <section id="oldquestions-section" class="page-section">
+            <h2 class="section-title"><i class="fas fa-history"></i> Previous Year Question Bank</h2>
+            <div class="questions-list">
+                <div class="question-card"><h3>📘 Class 9 - Website Design (Annual Exam 2024)</h3><p>Full paper with 8 questions: HTML structure, CSS selectors, responsive navbar, JavaScript form validation, and flexbox layout.</p><a href="#" class="btn-sm">Download PDF</a></div>
+                <div class="question-card"><h3>🗄️ Class 9 - DBMS (Term II 2023)</h3><p>Define DBMS, RDBMS. Write SQL for student table. Explain primary key, foreign key. Normalization example.</p><a href="#" class="btn-sm">Get Question Bank</a></div>
+                <div class="question-card"><h3>🌐 Class 10 - Web Tech (Board Practice Set 2024)</h3><p>Difference between CSS Grid and Flexbox. Create a responsive registration form. Explain event bubbling.</p><a href="#" class="btn-sm">Download Set</a></div>
+                <div class="question-card"><h3>💾 Class 10 - DBMS (Pre-Board 2024)</h3><p>ACID properties, join types, subqueries, normalization up to 3NF. Write SQL queries for employee database.</p><a href="#" class="btn-sm">View Paper</a></div>
+                <div class="question-card"><h3>📝 Class 9 - Combined (Web + DB) Half-Yearly 2025</h3><p>20 MCQs + 5 long answers: web hosting, SQL injection, CSS transitions, database integrity.</p><a href="#" class="btn-sm">Get Paper</a></div>
+            </div>
+        </section>
+
+        <!-- NEW: STUDY NOTES / RESOURCES SECTION -->
+        <section id="resources-section" class="page-section">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Free Study Notes & Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card"><i class="fas fa-file-pdf"></i><h3>Website Design Notes</h3><p>Complete HTML/CSS cheatsheet, JS snippets, responsive templates.</p><a href="#" class="btn-sm">Download</a></div>
+                <div class="resource-card"><i class="fas fa-database"></i><h3>DBMS Handwritten Notes</h3><p>ER diagrams, SQL commands with examples, normalization steps.</p><a href="#" class="btn-sm">Get Notes</a></div>
+                <div class="resource-card"><i class="fas fa-video"></i><h3>Video Tutorials</h3><p>YouTube playlist links for web design and database concepts.</p><a href="#" class="btn-sm">Watch Now</a></div>
+            </div>
+        </section>
+
+        <!-- CONTACT US (phone & email prominent) -->
+        <section id="contact-section" class="page-section">
+            <h2 class="section-title"><i class="fas fa-headset"></i> Get in Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-detail"><i class="fas fa-phone-alt"></i><div><h4>Call / WhatsApp</h4><p><a href="tel:9819512536">9819512536</a></p></div></div>
+                    <div class="contact-detail"><i class="fas fa-envelope"></i><div><h4>Email Us</h4><p><a href="mailto:pbcomputer3662@gmail.com">pbcomputer3662@gmail.com</a></p></div></div>
+                    <div class="contact-detail"><i class="fas fa-map-marker-alt"></i><div><h4>Location</h4><p>PB Computer Institute, Nepal (Online & Offline classes)</p></div></div>
+                </div>
+                <div class="contact-note">
+                    <p><i class="fas fa-graduation-cap"></i> Have doubts? Call us directly or email. We provide free demo classes and doubt-clearing sessions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOGIN / SIGNUP (unchanged demo) -->
+        <section id="login-section" class="page-section"><div class="form-container"><h2><i class="fas fa-sign-in-alt"></i> Login</h2><form id="loginForm"><div class="input-group"><label>Email</label><input type="text" id="loginUser" required></div><div class="input-group"><label>Password</label><input type="password" id="loginPass" required></div><button type="submit" class="btn btn-primary full-width">Login</button><p class="form-footer">Demo: any credentials</p></form></div></section>
+        <section id="signup-section" class="page-section"><div class="form-container"><h2><i class="fas fa-user-plus"></i> Sign Up</h2><form id="signupForm"><div class="input-group"><label>Full Name</label><input type="text" id="signupName" required></div><div class="input-group"><label>Email</label><input type="email" id="signupEmail" required></div><div class="input-group"><label>Password</label><input type="password" id="signupPass" required></div><div class="input-group"><label>Confirm</label><input type="password" id="signupConfirm" required></div><button type="submit" class="btn btn-primary full-width">Create Account</button><p class="form-footer">Join for free resources</p></form></div></section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand"><h3><i class="fas fa-laptop-code"></i> InfotechPB</h3><p>Empowering tech education for Class 9 & 10</p></div>
+            <div class="footer-contact"><p><i class="fas fa-phone"></i> <strong>9819512536</strong></p><p><i class="fas fa-envelope"></i> <strong>pbcomputer3662@gmail.com</strong></p></div>
+            <div class="footer-copyright"><p>&copy; 2025 InfotechPB | All rights reserved</p></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

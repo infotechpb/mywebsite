@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>InfotechPB | Education Hub</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fc;
+            color: #1e2a3e;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== NAVBAR STYLES ========== */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0b3b5f, #1b7b6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c7a6e;
+            display: block;
+            letter-spacing: 0;
+        }
+
+        /* hamburger button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0b3b5f;
+            transition: 0.2s;
+        }
+
+        /* nav links container */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .nav-links a, .nav-link-btn {
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            color: #1e2a3e;
+            background: transparent;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .nav-links a:hover, .nav-link-btn:hover {
+            background: #eef2f6;
+            color: #1b7b6e;
+        }
+
+        /* search bar in navbar */
+        .search-form {
+            display: flex;
+            align-items: center;
+            background: #f0f2f5;
+            border-radius: 40px;
+            padding: 0.2rem 0.2rem 0.2rem 1rem;
+            margin-left: 0.5rem;
+        }
+        .search-form input {
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            outline: none;
+            width: 150px;
+            font-family: inherit;
+        }
+        .search-form button {
+            background: #1b7b6e;
+            border: none;
+            color: white;
+            border-radius: 40px;
+            padding: 0.45rem 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        .search-form button:hover {
+            background: #0e5e53;
+        }
+
+        /* dropdown menu for CLASS */
+        .dropdown-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: white;
+            min-width: 210px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 0.7rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s ease;
+            z-index: 100;
+            backdrop-filter: blur(0px);
+            border: 1px solid #e9edf2;
+        }
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            color: #2d3e50;
+            font-weight: 500;
+            border-radius: 0;
+        }
+        .dropdown-menu a:hover {
+            background: #eef2fa;
+            color: #1b7b6e;
+        }
+        .dropdown-title {
+            font-weight: 600;
+            padding: 0.4rem 1.5rem;
+            font-size: 0.75rem;
+            color: #6c7a8a;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #edf2f7;
+            margin-bottom: 0.3rem;
+        }
+
+        /* active / signup login special */
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            background: white;
+        }
+        .btn-primary-nav {
+            background: #0b3b5f;
+            color: white !important;
+        }
+        .btn-primary-nav:hover {
+            background: #1b7b6e !important;
+            color: white !important;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 920px) {
+            .navbar {
+                padding: 0.8rem 1.2rem;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                margin-top: 1rem;
+                background: #ffffff;
+                border-radius: 28px;
+                padding: 1rem 0.5rem;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+                gap: 0.3rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a, .nav-link-btn {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 0.75rem 1rem;
+            }
+            .search-form {
+                margin: 0.5rem 0 0.2rem 0;
+                width: 100%;
+            }
+            .search-form input {
+                flex: 1;
+                width: auto;
+            }
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                margin-top: 0.5rem;
+                background: #f8fafc;
+                border: none;
+                padding-left: 1.2rem;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+            }
+            .dropdown-menu.show {
+                display: block;
+            }
+            .dropdown-menu a {
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        /* main content */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 90px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #eef6f3, #ffffff);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .hero h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0b3b5f;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            color: #2c5368;
+        }
+        .badge {
+            display: inline-block;
+            background: #1b7b6e20;
+            color: #1b7b6e;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+        .subject-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2edf2;
+        }
+        .subject-card i {
+            font-size: 2.2rem;
+            color: #1b7b6e;
+            margin-bottom: 1rem;
+        }
+        .subject-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .btn-sm {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #0b3b5f;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .questions-list {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+        }
+        .question-item {
+            border-bottom: 1px solid #e2edf2;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .contact-form {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.7rem 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 1rem;
+            font-family: inherit;
+        }
+        .contact-form button {
+            background: #0b3b5f;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+        footer {
+            background: #0b2a3b;
+            color: #cddfe7;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 2rem 2rem 0 0;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal {
+            background: white;
+            max-width: 400px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .modal input {
+            width: 100%;
+            padding: 0.7rem;
+            margin: 0.7rem 0;
+            border-radius: 1.5rem;
+            border: 1px solid #ccc;
+        }
+        .modal button {
+            background: #1b7b6e;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #1b7b6e;
+            padding-left: 1rem;
+        }
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>infotechpb</h1>
+            <span>padam bista's edutech</span>
+        </div>
+        <button class="menu-toggle" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link-btn"><i class="fas fa-home"></i> Home</a></li>
+            <li class="dropdown-li">
+                <span class="nav-link-btn" id="classDropdownBtn"><i class="fas fa-graduation-cap"></i> Class <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></span>
+                <div class="dropdown-menu" id="classDropdownMenu">
+                    <div class="dropdown-title">📘 GRADE 9</div>
+                    <a href="#" class="class9-link"><i class="fas fa-code"></i> Website Design</a>
+                    <a href="#" class="class9-db-link"><i class="fas fa-database"></i> Database Management System</a>
+                    <div class="dropdown-title" style="margin-top: 6px;">📙 GRADE 10</div>
+                    <a href="#" class="class10-web-link"><i class="fas fa-laptop-code"></i> Advanced Web Tech</a>
+                    <a href="#" class="class10-db-link"><i class="fas fa-table"></i> DBMS (Grade 10)</a>
+                </div>
+            </li>
+            <li><a href="#oldquestions" class="nav-link-btn"><i class="fas fa-archive"></i> Old Questions</a></li>
+            <li><a href="#contact" class="nav-link-btn"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            <li><a href="#" id="loginModalBtn" class="nav-link-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li><a href="#" id="signupModalBtn" class="nav-link-btn btn-primary-nav"><i class="fas fa-user-plus"></i> Signup</a></li>
+            <li>
+                <form class="search-form" id="searchForm">
+                    <input type="text" placeholder="Search notes, questions..." id="searchInput">
+                    <button type="submit"><i class="fas fa-search"></i> Go</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- HOME section -->
+    <section id="home">
+        <div class="hero">
+            <div class="badge"><i class="fas fa-chalkboard-user"></i> Welcome to InfotechPB</div>
+            <h2>Empowering Digital Learning</h2>
+            <p>Class 9 & 10 | Website Design | DBMS | Old Questions & Resources</p>
+            <p style="font-size: 1rem; margin-top: 0.5rem;">🚀 Curated by <strong>Padam Bista</strong> — your tech education partner</p>
+        </div>
+    </section>
+
+    <!-- CLASS SECTION (Grade 9 & 10 detailed subjects) -->
+    <section id="classSubjects">
+        <h2 class="section-title"><i class="fas fa-book-open"></i> Class 9 & 10 Subjects</h2>
+        <div class="card-grid">
+            <!-- class nine cards -->
+            <div class="subject-card">
+                <i class="fas fa-globe"></i>
+                <h3>Class 9: Website Design</h3>
+                <p>HTML5, CSS3, JavaScript fundamentals, responsive layouts, and modern web principles.</p>
+                <a href="#" class="btn-sm explore-nine-web">Explore →</a>
+            </div>
+            <div class="subject-card">
+                <i class="fas fa-database"></i>
+                <h3>Class 9: DBMS</h3>
+                <p>Database concepts, SQL queries, ER models, normalization — foundation of data management.</p>
+                <a href="#" class="btn-sm explore-nine-db">Explore →</a>
+            </div>
+            <!-- class ten subjects -->
+            <div class="subject-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Class 10: Advanced Web Tech</h3>
+                <p>Responsive frameworks, JavaScript ES6, APIs, and modern frontend tooling.</p>
+                <a href="#" class="btn-sm explore-ten-web">Explore →</a>
+            </div>
+            <div class="subject-card">
+                <i class="fas fa-database"></i>
+                <h3>Class 10: DBMS (Advanced)</h3>
+                <p>Advanced SQL, transaction management, database security & real-world projects.</p>
+                <a href="#" class="btn-sm explore-ten-db">Explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OLD QUESTIONS SECTION -->
+    <section id="oldquestions">
+        <h2 class="section-title"><i class="fas fa-history"></i> Old Questions (Board Exams)</h2>
+        <div class="questions-list">
+            <div class="question-item">
+                <span><i class="fas fa-file-pdf"></i> Class 9 - Website Design (2080)</span>
+                <a href="#" class="btn-sm" style="background:#2c7a6e;">Download PDF</a>
+            </div>
+            <div class="question-item">
+                <span><i class="fas fa-file-pdf"></i> Class 9 - Database Management System (2080)</span>
+                <a href="#" class="btn-sm" style="background:#2c7a6e;">Download PDF</a>
+            </div>
+            <div class="question-item">
+                <span><i class="fas fa-file-pdf"></i> Class 10 - Computer Science (2081)</span>
+                <a href="#" class="btn-sm" style="background:#2c7a6e;">Download PDF</a>
+            </div>
+            <div class="question-item">
+                <span><i class="fas fa-file-pdf"></i> Class 10 - DBMS Model Question (2081)</span>
+                <a href="#" class="btn-sm" style="background:#2c7a6e;">Download PDF</a>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; text-align:center;">📌 More previous papers & solutions — updated regularly.</p>
+    </section>
+
+    <!-- CONTACT US -->
+    <section id="contact">
+        <h2 class="section-title"><i class="fas fa-phone-alt"></i> Contact Us</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required id="contactName">
+                <input type="email" placeholder="Email Address" required id="contactEmail">
+                <textarea rows="3" placeholder="Message..." required id="contactMsg"></textarea>
+                <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p style="margin-top: 1rem; font-size:0.8rem;">📧 pbcomputer3662@gmail.com| 📞 +977-9861655962</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 InfotechPB — Designed & Developed by <strong>Padam Bista</strong> | All resources for students</p>
+    <p style="margin-top: 0.5rem;"><i class="fas fa-mobile-alt"></i> Responsive Learning Platform</p>
+</footer>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal-overlay">
+    <div class="modal">
+        <span class="close-modal" id="closeLoginModal">&times;</span>
+        <h3><i class="fas fa-sign-in-alt"></i> Login to InfotechPB</h3>
+        <input type="text" placeholder="Username / Email" id="loginUser">
+        <input type="password" placeholder="Password" id="loginPass">
+        <button id="doLoginBtn">Login</button>
+        <p style="margin-top: 0.8rem;">Demo: any user/pass</p>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="modal-overlay">
+    <div class="modal">
+        <span class="close-modal" id="closeSignupModal">&times;</span>
+        <h3><i class="fas fa-user-plus"></i> Create Account</h3>
+        <input type="text" placeholder="Full Name" id="signName">
+        <input type="email" placeholder="Email" id="signEmail">
+        <input type="password" placeholder="Password" id="signPass">
+        <button id="doSignupBtn">Sign Up</button>
+        <p style="margin-top: 0.8rem;">Join for free resources</p>
+    </div>
+</div>
+
+<script>
+    // Responsive mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Dropdown for CLASS (both desktop/mobile unified)
+    const classDropdownBtn = document.getElementById('classDropdownBtn');
+    const classDropdownMenu = document.getElementById('classDropdownMenu');
+    let dropdownOpen = false;
+
+    function closeDropdown() {
+        classDropdownMenu.classList.remove('show');
+        dropdownOpen = false;
+    }
+
+    function toggleDropdown(e) {
+        e.stopPropagation();
+        if (dropdownOpen) {
+            closeDropdown();
+        } else {
+            classDropdownMenu.classList.add('show');
+            dropdownOpen = true;
+        }
+    }
+
+    classDropdownBtn.addEventListener('click', toggleDropdown);
+    // close when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!classDropdownBtn.contains(event.target) && !classDropdownMenu.contains(event.target)) {
+            closeDropdown();
+        }
+    });
+    // Also prevent closing when clicking inside dropdown menu
+    classDropdownMenu.addEventListener('click', (e) => e.stopPropagation());
+
+    // smooth dropdown items: scroll to class subjects, highlight
+    function scrollToSubjects() {
+        document.getElementById('classSubjects').scrollIntoView({ behavior: 'smooth' });
+        closeDropdown();
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+    }
+
+    // handling class links from dropdown
+    document.querySelectorAll('.class9-link, .class9-db-link, .class10-web-link, .class10-db-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollToSubjects();
+            // Additional optional highlight
+            const targetSection = document.getElementById('classSubjects');
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Explore buttons (class cards) same behaviour
+    document.querySelectorAll('.explore-nine-web, .explore-nine-db, .explore-ten-web, .explore-ten-db').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('classSubjects').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Home link scroll
+    document.querySelector('a[href="#home"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        closeDropdown();
+    });
+    document.querySelector('a[href="#oldquestions"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('oldquestions').scrollIntoView({ behavior: 'smooth' });
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        closeDropdown();
+    });
+    document.querySelector('a[href="#contact"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        closeDropdown();
+    });
+
+    // Login & Signup Modals
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const loginBtn = document.getElementById('loginModalBtn');
+    const signupBtn = document.getElementById('signupModalBtn');
+    const closeLogin = document.getElementById('closeLoginModal');
+    const closeSignup = document.getElementById('closeSignupModal');
+
+    function openModal(modal) {
+        modal.classList.add('active');
+    }
+    function closeModal(modal) {
+        modal.classList.remove('active');
+    }
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(loginModal);
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        closeDropdown();
+    });
+    signupBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(signupModal);
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        closeDropdown();
+    });
+    closeLogin.addEventListener('click', () => closeModal(loginModal));
+    closeSignup.addEventListener('click', () => closeModal(signupModal));
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) closeModal(loginModal);
+        if (e.target === signupModal) closeModal(signupModal);
+    });
+
+    // Login / Signup dummy actions
+    document.getElementById('doLoginBtn').addEventListener('click', () => {
+        alert(`Welcome back, ${document.getElementById('loginUser').value || 'Student'}! Login successful (demo mode).`);
+        closeModal(loginModal);
+    });
+    document.getElementById('doSignupBtn').addEventListener('click', () => {
+        const name = document.getElementById('signName').value || 'User';
+        alert(`Account created for ${name}! 🎉 You can now access all materials.`);
+        closeModal(signupModal);
+    });
+
+    // Search bar functionality
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = searchInput.value.trim().toLowerCase();
+        if (query === "") {
+            alert("Please enter something to search (e.g., Website Design, DBMS, questions)");
+            return;
+        }
+        // Simple search simulation: show relevant section
+        if (query.includes("website") || query.includes("design") || query.includes("html")) {
+            document.getElementById('classSubjects').scrollIntoView({ behavior: 'smooth' });
+            alert(`🔍 Showing results for "${query}" → Check Website Design section.`);
+        } else if (query.includes("dbms") || query.includes("database")) {
+            document.getElementById('classSubjects').scrollIntoView({ behavior: 'smooth' });
+            alert(`🔍 DBMS resources found! Navigate to Class 9/10 DBMS cards.`);
+        } else if (query.includes("question") || query.includes("old") || query.includes("paper")) {
+            document.getElementById('oldquestions').scrollIntoView({ behavior: 'smooth' });
+            alert(`📄 Old questions related to "${query}" available.`);
+        } else if (query.includes("contact")) {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            alert(`📞 Contact us anytime!`);
+        } else {
+            alert(`No direct match found for "${query}". Try: Website Design, DBMS, Old Questions`);
+        }
+        searchInput.value = '';
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+    });
+
+    // Contact form alert (demo)
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value;
+        alert(`Thank you ${name}, your message has been sent. Padam Bista will reply soon!`);
+        contactForm.reset();
+    });
+
+    // For Old Questions PDF demo
+    document.querySelectorAll('.questions-list .btn-sm').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("📄 Sample question paper demo. Full PDF library available soon.");
+        });
+    });
+
+    // small fix: close dropdown when clicking on any nav link (optional for responsiveness)
+    const allNavLinks = document.querySelectorAll('.nav-links a, .nav-links .nav-link-btn');
+    allNavLinks.forEach(link => {
+        if (link.id !== 'classDropdownBtn') {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 920 && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+                closeDropdown();
+            });
+        }
+    });
+    // also ensure "Class" button does not close mobile menu when clicked for dropdown toggle
+    classDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+</script>
+</body>
+</html>
